@@ -49,7 +49,7 @@ npm start
 
 ### 3. Open in Browser
 
-Navigate to: **http://localhost:3001**
+Navigate to: **<http://localhost:3001>**
 
 ## How to Use
 
@@ -59,7 +59,13 @@ Navigate to: **http://localhost:3001**
    - Upload a profile photo (optional)
    - Write a professional summary
    - Upload up to 2 company logos for the footer (optional)
-   - Click "+ Add" buttons to add multiple entries for each section
+   - Click "+ Add" buttons to add multiple entries for each section:
+     - **Expertise Areas**: Your core competencies (up to 4)
+     - **Project Highlights**: Key projects with detailed descriptions (up to 5)
+     - **Key Achievements**: Notable accomplishments with impact details (up to 5)
+     - **Customer Feedback**: Client testimonials with name, position, and comments (up to 4)
+     - **Technical Skills**: Technologies and tools you use (up to 12)
+     - **Certifications**: Professional certifications with issuing organizations (up to 4)
 
 2. **Preview**: Click "Preview Portfolio →" to see your styled portfolio
 
@@ -79,8 +85,8 @@ profile-generator/
 ├── routes/
 │   └── main.js             # Route handlers (form, preview)
 ├── views/
-│   ├── form.ejs            # Dynamic input form with Add/Remove buttons
-│   ├── preview.ejs         # Styled preview with print CSS
+│   ├── form.ejs            # Dynamic input form with Add/Remove buttons (includes Customer Feedback)
+│   ├── preview.ejs         # Styled preview with print CSS (displays Customer Feedback section)
 │   └── pdf-template.ejs    # (Legacy - not used)
 ├── public/
 │   ├── style.css           # Main portfolio styling
@@ -99,14 +105,40 @@ profile-generator/
 - **Styling**: Custom CSS with SD Worx portfolio design
 - **Version Control**: Git with .gitignore for clean repository
 
-## 🎨 Design System
+## � Customer Feedback Section
+
+The Customer Feedback section is a new feature that adds professional testimonials to your portfolio:
+
+### Features
+
+- **Up to 4 Testimonials**: Add client feedback to showcase your impact
+- **2-Column Layout**: Testimonials are displayed in an elegant grid
+- **Complete Client Details**: Capture customer name, position/title, and detailed comments
+- **Strategic Positioning**: Located between Key Achievements and Technical Skills for maximum impact
+- **Orange Accent Styling**: Distinguished with Aerospace Orange borders and Princeton Orange customer names
+
+### Form Fields
+
+- **Customer/Client Name**: The name of the person providing feedback
+- **Customer Position/Title**: Their role and company (e.g., "Product Manager, SD Worx")
+- **Customer Feedback/Testimonial**: The complete testimonial text in quotes
+
+### PDF Layout
+
+- Displays in a professional 2-column grid format
+- Customer names highlighted in Princeton Orange
+- Position/title in muted text below the name
+- Testimonial text in italics with proper quotation marks
+- Orange accent borders to distinguish from other sections
+
+## �🎨 Design System
 
 ### Color Palette
 
 - **Federal Blue**: `#00004D` - Primary background
 - **Steel Blue**: `#3C77AE` - Brand color, borders (60% opacity in print)
-- **Aerospace Orange**: `#FF4D00` - Accent color
-- **Princeton Orange**: `#FF9919` - Secondary headings
+- **Aerospace Orange**: `#FF4D00` - Accent color, Customer Feedback borders
+- **Princeton Orange**: `#FF9919` - Secondary headings, Customer names
 - **Alice Blue**: `#E6F2FF` - Primary text color
 
 ### Typography & Layout
