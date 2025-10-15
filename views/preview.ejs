@@ -307,6 +307,27 @@
           </section>
         <% } %>
 
+        <!-- Customer Feedback Section -->
+        <% if (data.feedbackCustomers && Array.isArray(data.feedbackCustomers) && data.feedbackCustomers.length > 0) { %>
+          <section class="card">
+            <h2>Customer Feedback</h2>
+            <div class="feedback-grid">
+              <% for(let i=0; i<data.feedbackCustomers.length; i++) { 
+                if(data.feedbackCustomers[i] && data.feedbackCustomers[i].trim()) { %>
+                <div class="feedback-item">
+                  <span class="customer-name"><%= data.feedbackCustomers[i] %></span>
+                  <% if (data.feedbackPositions && data.feedbackPositions[i]) { %>
+                  <span class="customer-position"><%= data.feedbackPositions[i] %></span>
+                  <% } %>
+                  <% if (data.feedbackComments && data.feedbackComments[i]) { %>
+                  <div class="customer-comment">"<%= data.feedbackComments[i] %>"</div>
+                  <% } %>
+                </div>
+              <% }} %>
+            </div>
+          </section>
+        <% } %>
+
         <!-- Skills Section -->
         <% if (data.skills && Array.isArray(data.skills) && data.skills.length > 0) { %>
           <section class="card">

@@ -1,283 +1,358 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title><%= data.name %> - Professional Portfolio</title>
-  <style>
-    :root {
-      --federal-blue: #00004D;
-      --steel-blue: #3C77AE;
-      --aerospace-orange: #FF4D00;
-      --princeton-orange: #FF9919;
-      --alice-blue: #E6F2FF;
-    }
-    
-    * { 
-      box-sizing: border-box; 
-      margin: 0;
-      padding: 0;
-    }
-    
-    body {
-      background-color: #00004D;
-      background: radial-gradient(1200px 600px at 10% -10%, rgba(60, 119, 174, 0.15), transparent),
-                  radial-gradient(900px 500px at 110% 0%, rgba(255, 153, 25, 0.08), transparent),
-                  #00004D;
-      color: #E6F2FF;
-      font-family: system-ui, -apple-system, "Segoe UI", Roboto, Ubuntu, Cantarell, sans-serif;
-      font-weight: 500;
-      font-size: 14px;
-      line-height: 1.5;
-      padding: 16px;
-    }
-    
-    .wrap {
-      max-width: 100%;
-    }
-    
-    .hero {
-      background: linear-gradient(135deg, rgba(60, 119, 174, 0.15), rgba(255, 153, 25, 0.08));
-      border: 1px solid rgba(60, 119, 174, 0.3);
-      border-radius: 12px;
-      padding: 16px 20px;
-      box-shadow: 0 10px 30px rgba(0, 0, 77, 0.4);
-      margin-bottom: 20px;
-    }
-    
-    .hero-top {
-      display: grid;
-      grid-template-columns: auto 1fr;
-      align-items: center;
-      gap: 16px;
-      margin-bottom: 10px;
-    }
-    
-    .photo {
-      width: 80px;
-      height: 80px;
-      border-radius: 50%;
-      overflow: hidden;
-      border: 3px solid #FF9919;
-      box-shadow: 0 4px 12px rgba(0, 0, 77, 0.4);
-    }
-    
-    .photo img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-    
-    .title {
-      font-size: 22px;
-      font-weight: 800;
-      margin: 0;
-      color: #E6F2FF;
-    }
-    
-    .subtitle {
-      margin: 4px 0 0;
-      color: rgba(230, 242, 255, 0.7);
-      font-size: 12px;
-    }
-    
-    .meta {
-      display: flex;
-      gap: 6px;
-      flex-wrap: wrap;
-      margin-top: 8px;
-    }
-    
-    .chip {
-      background: rgba(60, 119, 174, 0.2);
-      border: 1px solid rgba(60, 119, 174, 0.3);
-      padding: 3px 8px;
-      border-radius: 12px;
-      font-size: 10px;
-      font-weight: 600;
-      color: #E6F2FF;
-    }
-    
-    .profile-summary {
-      margin: 10px 0 0;
-      font-size: 12px;
-      color: rgba(230, 242, 255, 0.8);
-      line-height: 1.4;
-    }
-    
-    .grid {
-      display: grid;
-      gap: 16px;
-      grid-template-columns: repeat(2, 1fr);
-    }
-    
-    .card {
-      background: linear-gradient(180deg, rgba(60, 119, 174, 0.1), rgba(60, 119, 174, 0.15));
-      border: 1px solid rgba(60, 119, 174, 0.3);
-      border-radius: 12px;
-      padding: 16px;
-      box-shadow: 0 10px 30px rgba(0, 0, 77, 0.4);
-      break-inside: avoid;
-    }
-    
-    .card h2 {
-      font-size: 16px;
-      margin: 0 0 10px;
-      color: #FF9919;
-      font-weight: 700;
-    }
-    
-    .card h3 {
-      font-size: 13px;
-      margin: 8px 0 4px;
-      color: #E6F2FF;
-      font-weight: 600;
-    }
-    
-    .card p, .card li {
-      font-size: 11px;
-      color: rgba(230, 242, 255, 0.7);
-      line-height: 1.4;
-      margin-bottom: 6px;
-    }
-    
-    .card ul {
-      margin: 6px 0;
-      padding-left: 16px;
-    }
-    
-    .skills-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 6px;
-    }
-    
-    .skill-item {
-      background: rgba(60, 119, 174, 0.1);
-      border: 1px solid rgba(60, 119, 174, 0.3);
-      border-radius: 6px;
-      padding: 6px;
-      text-align: center;
-      font-size: 10px;
-      color: #E6F2FF;
-    }
-    
-    .cert-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 8px;
-    }
-    
-    .cert-item {
-      background: rgba(60, 119, 174, 0.05);
-      border: 1px solid rgba(60, 119, 174, 0.3);
-      border-radius: 6px;
-      padding: 8px;
-      font-size: 10px;
-    }
-    
-    .cert-item strong {
-      display: block;
-      color: #E6F2FF;
-      margin-bottom: 2px;
-      font-weight: 600;
-    }
-    
-    .cert-item small {
-      color: rgba(230, 242, 255, 0.7);
-    }
-    
-    .btn-download {
-      display: none;
-    }
-  </style>
-</head>
-<body>
-  <div class="wrap">
-    <section class="hero">
-      <div class="hero-top">
-        <% if (data.photo) { %>
-        <div class="photo">
-          <img src="<%= data.photo %>" alt="<%= data.name %>">
-        </div>
-        <% } %>
-        <div>
-          <h1 class="title"><%= data.name %></h1>
-          <% if (data.title || data.company) { %>
-          <p class="subtitle">
-            <%= data.title %><% if (data.title && data.company) { %> @ <% } %><%= data.company %>
-          </p>
-          <% } %>
-          <% if (data.chips && Array.isArray(data.chips) && data.chips.length > 0) { %>
-          <div class="meta">
-            <% data.chips.forEach(chip => { %>
-            <span class="chip"><%= chip %></span>
-            <% }); %>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= data.name %> - Professional Portfolio</title>
+    <style>
+      :root {
+        --federal-blue: #00004d;
+        --steel-blue: #3c77ae;
+        --aerospace-orange: #ff4d00;
+        --princeton-orange: #ff9919;
+        --alice-blue: #e6f2ff;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        background-color: #00004d;
+        background: radial-gradient(
+            1200px 600px at 10% -10%,
+            rgba(60, 119, 174, 0.15),
+            transparent
+          ),
+          radial-gradient(
+            900px 500px at 110% 0%,
+            rgba(255, 153, 25, 0.08),
+            transparent
+          ),
+          #00004d;
+        color: #e6f2ff;
+        font-family: system-ui, -apple-system, "Segoe UI", Roboto, Ubuntu,
+          Cantarell, sans-serif;
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 1.5;
+        padding: 16px;
+      }
+
+      .wrap {
+        max-width: 100%;
+      }
+
+      .hero {
+        background: linear-gradient(
+          135deg,
+          rgba(60, 119, 174, 0.15),
+          rgba(255, 153, 25, 0.08)
+        );
+        border: 1px solid rgba(60, 119, 174, 0.3);
+        border-radius: 12px;
+        padding: 16px 20px;
+        box-shadow: 0 10px 30px rgba(0, 0, 77, 0.4);
+        margin-bottom: 20px;
+      }
+
+      .hero-top {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        align-items: center;
+        gap: 16px;
+        margin-bottom: 10px;
+      }
+
+      .photo {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        overflow: hidden;
+        border: 3px solid #ff9919;
+        box-shadow: 0 4px 12px rgba(0, 0, 77, 0.4);
+      }
+
+      .photo img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .title {
+        font-size: 22px;
+        font-weight: 800;
+        margin: 0;
+        color: #e6f2ff;
+      }
+
+      .subtitle {
+        margin: 4px 0 0;
+        color: rgba(230, 242, 255, 0.7);
+        font-size: 12px;
+      }
+
+      .meta {
+        display: flex;
+        gap: 6px;
+        flex-wrap: wrap;
+        margin-top: 8px;
+      }
+
+      .chip {
+        background: rgba(60, 119, 174, 0.2);
+        border: 1px solid rgba(60, 119, 174, 0.3);
+        padding: 3px 8px;
+        border-radius: 12px;
+        font-size: 10px;
+        font-weight: 600;
+        color: #e6f2ff;
+      }
+
+      .profile-summary {
+        margin: 10px 0 0;
+        font-size: 12px;
+        color: rgba(230, 242, 255, 0.8);
+        line-height: 1.4;
+      }
+
+      .grid {
+        display: grid;
+        gap: 16px;
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .card {
+        background: linear-gradient(
+          180deg,
+          rgba(60, 119, 174, 0.1),
+          rgba(60, 119, 174, 0.15)
+        );
+        border: 1px solid rgba(60, 119, 174, 0.3);
+        border-radius: 12px;
+        padding: 16px;
+        box-shadow: 0 10px 30px rgba(0, 0, 77, 0.4);
+        break-inside: avoid;
+      }
+
+      .card h2 {
+        font-size: 16px;
+        margin: 0 0 10px;
+        color: #ff9919;
+        font-weight: 700;
+      }
+
+      .card h3 {
+        font-size: 13px;
+        margin: 8px 0 4px;
+        color: #e6f2ff;
+        font-weight: 600;
+      }
+
+      .card p,
+      .card li {
+        font-size: 11px;
+        color: rgba(230, 242, 255, 0.7);
+        line-height: 1.4;
+        margin-bottom: 6px;
+      }
+
+      .card ul {
+        margin: 6px 0;
+        padding-left: 16px;
+      }
+
+      .skills-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 6px;
+      }
+
+      .skill-item {
+        background: rgba(60, 119, 174, 0.1);
+        border: 1px solid rgba(60, 119, 174, 0.3);
+        border-radius: 6px;
+        padding: 6px;
+        text-align: center;
+        font-size: 10px;
+        color: #e6f2ff;
+      }
+
+      .cert-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+      }
+
+      .cert-item {
+        background: rgba(60, 119, 174, 0.05);
+        border: 1px solid rgba(60, 119, 174, 0.3);
+        border-radius: 6px;
+        padding: 8px;
+        font-size: 10px;
+      }
+
+      .cert-item strong {
+        display: block;
+      }
+
+      .feedback-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+      }
+
+      .feedback-item {
+        background: rgba(255, 77, 0, 0.05);
+        border: 1px solid rgba(255, 77, 0, 0.3);
+        border-radius: 8px;
+        padding: 10px;
+        font-size: 10px;
+      }
+
+      .feedback-item .customer-name {
+        display: block;
+        color: #ff9919;
+        font-weight: 600;
+        margin-bottom: 2px;
+      }
+
+      .feedback-item .customer-position {
+        display: block;
+        color: rgba(230, 242, 255, 0.5);
+        font-size: 9px;
+        margin-bottom: 6px;
+      }
+
+      .feedback-item .customer-comment {
+        color: rgba(230, 242, 255, 0.7);
+        line-height: 1.4;
+        font-style: italic;
+        color: #e6f2ff;
+        margin-bottom: 2px;
+        font-weight: 600;
+      }
+
+      .cert-item small {
+        color: rgba(230, 242, 255, 0.7);
+      }
+
+      .btn-download {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <section class="hero">
+        <div class="hero-top">
+          <% if (data.photo) { %>
+          <div class="photo">
+            <img src="<%= data.photo %>" alt="<%= data.name %>" />
           </div>
           <% } %>
+          <div>
+            <h1 class="title"><%= data.name %></h1>
+            <% if (data.title || data.company) { %>
+            <p class="subtitle">
+              <%= data.title %><% if (data.title && data.company) { %> @ <% }
+              %><%= data.company %>
+            </p>
+            <% } %> <% if (data.chips && Array.isArray(data.chips) &&
+            data.chips.length > 0) { %>
+            <div class="meta">
+              <% data.chips.forEach(chip => { %>
+              <span class="chip"><%= chip %></span>
+              <% }); %>
+            </div>
+            <% } %>
+          </div>
         </div>
-      </div>
-      <% if (data.summary) { %>
-      <p class="profile-summary"><%= data.summary %></p>
-      <% } %>
-    </section>
+        <% if (data.summary) { %>
+        <p class="profile-summary"><%= data.summary %></p>
+        <% } %>
+      </section>
 
-    <div class="grid">
-      <% if (data.projectNames && Array.isArray(data.projectNames) && data.projectNames.length > 0) { %>
-      <div class="card">
-        <h2>Key Projects</h2>
-        <% data.projectNames.forEach((name, i) => { %>
-        <div>
-          <h3><%= name %></h3>
-          <% if (data.projectHighlights && data.projectHighlights[i]) { %>
-          <p><%= data.projectHighlights[i] %></p>
-          <% } %>
-        </div>
-        <% }); %>
-      </div>
-      <% } %>
-
-      <% if (data.achievementTitles && Array.isArray(data.achievementTitles) && data.achievementTitles.length > 0) { %>
-      <div class="card">
-        <h2>Key Achievements</h2>
-        <% data.achievementTitles.forEach((title, i) => { %>
-        <div>
-          <h3><%= title %></h3>
-          <% if (data.achievementDetails && data.achievementDetails[i]) { %>
-          <p><%= data.achievementDetails[i] %></p>
-          <% } %>
-        </div>
-        <% }); %>
-      </div>
-      <% } %>
-
-      <% if (data.skills && Array.isArray(data.skills) && data.skills.length > 0) { %>
-      <div class="card">
-        <h2>Technical Skills</h2>
-        <div class="skills-grid">
-          <% data.skills.forEach(skill => { %>
-          <div class="skill-item"><%= skill %></div>
-          <% }); %>
-        </div>
-      </div>
-      <% } %>
-
-      <% if (data.certNames && Array.isArray(data.certNames) && data.certNames.length > 0) { %>
-      <div class="card">
-        <h2>Certifications</h2>
-        <div class="cert-grid">
-          <% data.certNames.forEach((cert, i) => { %>
-          <div class="cert-item">
-            <strong><%= cert %></strong>
-            <% if (data.certIssuers && data.certIssuers[i]) { %>
-            <small><%= data.certIssuers[i] %></small>
+      <div class="grid">
+        <% if (data.projectNames && Array.isArray(data.projectNames) &&
+        data.projectNames.length > 0) { %>
+        <div class="card">
+          <h2>Key Projects</h2>
+          <% data.projectNames.forEach((name, i) => { %>
+          <div>
+            <h3><%= name %></h3>
+            <% if (data.projectHighlights && data.projectHighlights[i]) { %>
+            <p><%= data.projectHighlights[i] %></p>
             <% } %>
           </div>
           <% }); %>
         </div>
+        <% } %> <% if (data.achievementTitles &&
+        Array.isArray(data.achievementTitles) && data.achievementTitles.length >
+        0) { %>
+        <div class="card">
+          <h2>Key Achievements</h2>
+          <% data.achievementTitles.forEach((title, i) => { %>
+          <div>
+            <h3><%= title %></h3>
+            <% if (data.achievementDetails && data.achievementDetails[i]) { %>
+            <p><%= data.achievementDetails[i] %></p>
+            <% } %>
+          </div>
+          <% }); %>
+        </div>
+        <% } %> <% if (data.feedbackCustomers &&
+        Array.isArray(data.feedbackCustomers) && data.feedbackCustomers.length >
+        0) { %>
+        <div class="card">
+          <h2>Customer Feedback</h2>
+          <div class="feedback-grid">
+            <% data.feedbackCustomers.forEach((customer, i) => { %>
+            <div class="feedback-item">
+              <span class="customer-name"><%= customer %></span>
+              <% if (data.feedbackPositions && data.feedbackPositions[i]) { %>
+              <span class="customer-position"
+                ><%= data.feedbackPositions[i] %></span
+              >
+              <% } %> <% if (data.feedbackComments && data.feedbackComments[i])
+              { %>
+              <div class="customer-comment">
+                "<%= data.feedbackComments[i] %>"
+              </div>
+              <% } %>
+            </div>
+            <% }); %>
+          </div>
+        </div>
+        <% } %> <% if (data.skills && Array.isArray(data.skills) &&
+        data.skills.length > 0) { %>
+        <div class="card">
+          <h2>Technical Skills</h2>
+          <div class="skills-grid">
+            <% data.skills.forEach(skill => { %>
+            <div class="skill-item"><%= skill %></div>
+            <% }); %>
+          </div>
+        </div>
+        <% } %> <% if (data.certNames && Array.isArray(data.certNames) &&
+        data.certNames.length > 0) { %>
+        <div class="card">
+          <h2>Certifications</h2>
+          <div class="cert-grid">
+            <% data.certNames.forEach((cert, i) => { %>
+            <div class="cert-item">
+              <strong><%= cert %></strong>
+              <% if (data.certIssuers && data.certIssuers[i]) { %>
+              <small><%= data.certIssuers[i] %></small>
+              <% } %>
+            </div>
+            <% }); %>
+          </div>
+        </div>
+        <% } %>
       </div>
-      <% } %>
     </div>
-  </div>
-</body>
+  </body>
 </html>

@@ -27,13 +27,13 @@ router.get('/', (req, res) => {
 
 router.post('/preview', uploadFields, (req, res) => {
   console.log('Preview - Raw body:', JSON.stringify(req.body, null, 2));
-  
+
   // Helper function to ensure array
   const ensureArray = (value) => {
     if (!value) return [];
     return Array.isArray(value) ? value.filter(Boolean) : [value].filter(Boolean);
   };
-  
+
   const data = {
     name: req.body.name,
     title: req.body.title,
@@ -47,11 +47,14 @@ router.post('/preview', uploadFields, (req, res) => {
     projectHighlights: ensureArray(req.body['projectHighlights[]'] || req.body.projectHighlights),
     achievementTitles: ensureArray(req.body['achievementTitles[]'] || req.body.achievementTitles),
     achievementDetails: ensureArray(req.body['achievementDetails[]'] || req.body.achievementDetails),
+    feedbackCustomers: ensureArray(req.body['feedbackCustomers[]'] || req.body.feedbackCustomers),
+    feedbackPositions: ensureArray(req.body['feedbackPositions[]'] || req.body.feedbackPositions),
+    feedbackComments: ensureArray(req.body['feedbackComments[]'] || req.body.feedbackComments),
     skills: ensureArray(req.body['skills[]'] || req.body.skills),
     certNames: ensureArray(req.body['certNames[]'] || req.body.certNames),
     certIssuers: ensureArray(req.body['certIssuers[]'] || req.body.certIssuers),
   };
-  
+
   console.log('Preview - Processed data:', JSON.stringify(data, null, 2));
   res.render('preview', { data });
 });

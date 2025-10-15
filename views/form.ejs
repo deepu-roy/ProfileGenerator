@@ -1,172 +1,251 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Profile PDF Generator</title>
-  <link rel="stylesheet" href="/style.css">
-</head>
-<body>
-  <div class="wrap">
-    <div class="form-container">
-      <h1 class="form-title">Profile PDF Generator</h1>
-      <p class="form-subtitle">Fill in your details to generate a professional portfolio PDF</p>
-      
-      <form action="/preview" method="POST" enctype="multipart/form-data" id="mainForm">
-        <!-- Personal Info Section -->
-        <div class="form-section">
-          <h2>Personal Information</h2>
-          <div class="form-group">
-            <label>Name *</label>
-            <input type="text" name="name" placeholder="Your Full Name" required>
-          </div>
-          <div class="form-group">
-            <label>Job Title *</label>
-            <input type="text" name="title" placeholder="e.g., Principal Consultant" required>
-          </div>
-          <div class="form-group">
-            <label>Company</label>
-            <input type="text" name="company" placeholder="Your Company Name">
-          </div>
-          <div class="form-group">
-            <label>Profile Photo</label>
-            <input type="file" name="photo" accept="image/*" class="file-input">
-          </div>
-          <div class="form-group">
-            <label>Company Logo 1 (Optional)</label>
-            <input type="file" name="logo1" accept="image/*" class="file-input">
-          </div>
-          <div class="form-group">
-            <label>Company Logo 2 (Optional)</label>
-            <input type="file" name="logo2" accept="image/*" class="file-input">
-          </div>
-          <div class="form-group">
-            <label>Profile Summary *</label>
-            <textarea name="summary" rows="4" placeholder="Brief professional summary..." required></textarea>
-          </div>
-        </div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Profile PDF Generator</title>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="form-container">
+        <h1 class="form-title">Profile PDF Generator</h1>
+        <p class="form-subtitle">
+          Fill in your details to generate a professional portfolio PDF
+        </p>
 
-        <!-- Expertise Chips Section -->
-        <div class="form-section">
-          <h2>Expertise Areas (Chips)</h2>
-          <div id="chipsContainer"></div>
-          <button type="button" class="btn-add" onclick="addChip()">+ Add Expertise</button>
-        </div>
+        <form
+          action="/preview"
+          method="POST"
+          enctype="multipart/form-data"
+          id="mainForm"
+        >
+          <!-- Personal Info Section -->
+          <div class="form-section">
+            <h2>Personal Information</h2>
+            <div class="form-group">
+              <label>Name *</label>
+              <input
+                type="text"
+                name="name"
+                placeholder="Your Full Name"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label>Job Title *</label>
+              <input
+                type="text"
+                name="title"
+                placeholder="e.g., Principal Consultant"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label>Company</label>
+              <input
+                type="text"
+                name="company"
+                placeholder="Your Company Name"
+              />
+            </div>
+            <div class="form-group">
+              <label>Profile Summary *</label>
+              <textarea
+                name="summary"
+                rows="4"
+                placeholder="Brief professional summary..."
+                required
+              ></textarea>
+            </div>
+            <div class="form-group">
+              <label>Profile Photo</label>
+              <input
+                type="file"
+                name="photo"
+                accept="image/*"
+                class="file-input"
+              />
+            </div>
+            <div class="form-group">
+              <label>Company Logo 1 (Optional)</label>
+              <input
+                type="file"
+                name="logo1"
+                accept="image/*"
+                class="file-input"
+              />
+            </div>
+            <div class="form-group">
+              <label>Company Logo 2 (Optional)</label>
+              <input
+                type="file"
+                name="logo2"
+                accept="image/*"
+                class="file-input"
+              />
+            </div>
+          </div>
 
-        <!-- Projects Section -->
-        <div class="form-section">
-          <h2>Project Highlights (Up to 5)</h2>
-          <div id="projectsContainer"></div>
-          <button type="button" class="btn-add" onclick="addProject()">+ Add Project</button>
-        </div>
+          <!-- Expertise Chips Section -->
+          <div class="form-section">
+            <h2>Expertise Areas (Chips)</h2>
+            <div id="chipsContainer"></div>
+            <button type="button" class="btn-add" onclick="addChip()">
+              + Add Expertise
+            </button>
+          </div>
 
-        <!-- Achievements Section -->
-        <div class="form-section">
-          <h2>Key Achievements (Up to 5)</h2>
-          <div id="achievementsContainer"></div>
-          <button type="button" class="btn-add" onclick="addAchievement()">+ Add Achievement</button>
-        </div>
+          <!-- Projects Section -->
+          <div class="form-section">
+            <h2>Project Highlights (Up to 5)</h2>
+            <div id="projectsContainer"></div>
+            <button type="button" class="btn-add" onclick="addProject()">
+              + Add Project
+            </button>
+          </div>
 
-        <!-- Skills Section -->
-        <div class="form-section">
-          <h2>Technical Skills (Up to 12)</h2>
-          <div id="skillsContainer"></div>
-          <button type="button" class="btn-add" onclick="addSkill()">+ Add Skill</button>
-        </div>
+          <!-- Achievements Section -->
+          <div class="form-section">
+            <h2>Key Achievements (Up to 5)</h2>
+            <div id="achievementsContainer"></div>
+            <button type="button" class="btn-add" onclick="addAchievement()">
+              + Add Achievement
+            </button>
+          </div>
 
-        <!-- Certifications Section -->
-        <div class="form-section">
-          <h2>Certifications (Up to 4)</h2>
-          <div id="certificationsContainer"></div>
-          <button type="button" class="btn-add" onclick="addCertification()">+ Add Certification</button>
-        </div>
+          <!-- Customer Feedback Section -->
+          <div class="form-section">
+            <h2>Customer Feedback (Up to 4)</h2>
+            <div id="feedbackContainer"></div>
+            <button type="button" class="btn-add" onclick="addFeedback()">
+              + Add Feedback
+            </button>
+          </div>
 
-        <button type="submit" class="btn-submit">Preview Portfolio →</button>
-      </form>
+          <!-- Skills Section -->
+          <div class="form-section">
+            <h2>Technical Skills (Up to 12)</h2>
+            <div id="skillsContainer"></div>
+            <button type="button" class="btn-add" onclick="addSkill()">
+              + Add Skill
+            </button>
+          </div>
+
+          <!-- Certifications Section -->
+          <div class="form-section">
+            <h2>Certifications (Up to 4)</h2>
+            <div id="certificationsContainer"></div>
+            <button type="button" class="btn-add" onclick="addCertification()">
+              + Add Certification
+            </button>
+          </div>
+
+          <button type="submit" class="btn-submit">Preview Portfolio →</button>
+        </form>
+      </div>
     </div>
-  </div>
 
-  <script>
-    let chipCount = 0;
-    let projectCount = 0;
-    let achievementCount = 0;
-    let skillCount = 0;
-    let certCount = 0;
+    <script>
+      let chipCount = 0;
+      let projectCount = 0;
+      let achievementCount = 0;
+      let feedbackCount = 0;
+      let skillCount = 0;
+      let certCount = 0;
 
-    function addChip() {
-      if (chipCount >= 4) return alert('Maximum 4 expertise areas allowed');
-      const container = document.getElementById('chipsContainer');
-      const div = document.createElement('div');
-      div.className = 'dynamic-item';
-      div.innerHTML = `
+      function addChip() {
+        if (chipCount >= 4) return alert("Maximum 4 expertise areas allowed");
+        const container = document.getElementById("chipsContainer");
+        const div = document.createElement("div");
+        div.className = "dynamic-item";
+        div.innerHTML = `
         <input type="text" name="chips[]" placeholder="e.g., Enterprise QA Transformation" required>
         <button type="button" class="btn-remove" onclick="this.parentElement.remove(); chipCount--;">Remove</button>
       `;
-      container.appendChild(div);
-      chipCount++;
-    }
+        container.appendChild(div);
+        chipCount++;
+      }
 
-    function addProject() {
-      if (projectCount >= 5) return alert('Maximum 5 projects allowed');
-      const container = document.getElementById('projectsContainer');
-      const div = document.createElement('div');
-      div.className = 'dynamic-item project-item';
-      div.innerHTML = `
+      function addProject() {
+        if (projectCount >= 5) return alert("Maximum 5 projects allowed");
+        const container = document.getElementById("projectsContainer");
+        const div = document.createElement("div");
+        div.className = "dynamic-item project-item";
+        div.innerHTML = `
         <input type="text" name="projectNames[]" placeholder="Project Name" required>
         <textarea name="projectHighlights[]" rows="3" placeholder="Project description/highlights..." required></textarea>
         <button type="button" class="btn-remove" onclick="this.parentElement.remove(); projectCount--;">Remove</button>
       `;
-      container.appendChild(div);
-      projectCount++;
-    }
+        container.appendChild(div);
+        projectCount++;
+      }
 
-    function addAchievement() {
-      if (achievementCount >= 5) return alert('Maximum 5 achievements allowed');
-      const container = document.getElementById('achievementsContainer');
-      const div = document.createElement('div');
-      div.className = 'dynamic-item';
-      div.innerHTML = `
+      function addAchievement() {
+        if (achievementCount >= 5)
+          return alert("Maximum 5 achievements allowed");
+        const container = document.getElementById("achievementsContainer");
+        const div = document.createElement("div");
+        div.className = "dynamic-item";
+        div.innerHTML = `
         <input type="text" name="achievementTitles[]" placeholder="Achievement Title" required>
         <textarea name="achievementDetails[]" rows="2" placeholder="Brief description..." required></textarea>
         <button type="button" class="btn-remove" onclick="this.parentElement.remove(); achievementCount--;">Remove</button>
       `;
-      container.appendChild(div);
-      achievementCount++;
-    }
+        container.appendChild(div);
+        achievementCount++;
+      }
 
-    function addSkill() {
-      if (skillCount >= 12) return alert('Maximum 12 skills allowed');
-      const container = document.getElementById('skillsContainer');
-      const div = document.createElement('div');
-      div.className = 'dynamic-item';
-      div.innerHTML = `
+      function addFeedback() {
+        if (feedbackCount >= 4)
+          return alert("Maximum 4 customer feedback entries allowed");
+        const container = document.getElementById("feedbackContainer");
+        const div = document.createElement("div");
+        div.className = "dynamic-item feedback-item";
+        div.innerHTML = `
+        <input type="text" name="feedbackCustomers[]" placeholder="Customer/Client Name" required>
+        <input type="text" name="feedbackPositions[]" placeholder="Customer Position/Title" required>
+        <textarea name="feedbackComments[]" rows="3" placeholder="Customer feedback/testimonial..." required></textarea>
+        <button type="button" class="btn-remove" onclick="this.parentElement.remove(); feedbackCount--;">Remove</button>
+      `;
+        container.appendChild(div);
+        feedbackCount++;
+      }
+
+      function addSkill() {
+        if (skillCount >= 12) return alert("Maximum 12 skills allowed");
+        const container = document.getElementById("skillsContainer");
+        const div = document.createElement("div");
+        div.className = "dynamic-item";
+        div.innerHTML = `
         <input type="text" name="skills[]" placeholder="e.g., Playwright, TypeScript, Docker" required>
         <button type="button" class="btn-remove" onclick="this.parentElement.remove(); skillCount--;">Remove</button>
       `;
-      container.appendChild(div);
-      skillCount++;
-    }
+        container.appendChild(div);
+        skillCount++;
+      }
 
-    function addCertification() {
-      if (certCount >= 4) return alert('Maximum 4 certifications allowed');
-      const container = document.getElementById('certificationsContainer');
-      const div = document.createElement('div');
-      div.className = 'dynamic-item';
-      div.innerHTML = `
+      function addCertification() {
+        if (certCount >= 4) return alert("Maximum 4 certifications allowed");
+        const container = document.getElementById("certificationsContainer");
+        const div = document.createElement("div");
+        div.className = "dynamic-item";
+        div.innerHTML = `
         <input type="text" name="certNames[]" placeholder="Certification Name" required>
         <input type="text" name="certIssuers[]" placeholder="Issuing Organization" required>
         <button type="button" class="btn-remove" onclick="this.parentElement.remove(); certCount--;">Remove</button>
       `;
-      container.appendChild(div);
-      certCount++;
-    }
+        container.appendChild(div);
+        certCount++;
+      }
 
-    // Add initial items
-    addChip();
-    addProject();
-    addAchievement();
-    addSkill();
-    addCertification();
-  </script>
-</body>
+      // Add initial items
+      addChip();
+      addProject();
+      addAchievement();
+      addFeedback();
+      addSkill();
+      addCertification();
+    </script>
+  </body>
 </html>

@@ -19,6 +19,7 @@ A professional Node.js + Express web application that generates beautiful portfo
 - **Expertise Chips** (up to 4) - Centrally aligned, pill-styled badges
 - **Project Highlights** (up to 5) - Name + detailed descriptions
 - **Key Achievements** (up to 5) - Title + impact descriptions
+- **Customer Feedback** (up to 4) - Client testimonials with name, position & comments in 2-column layout
 - **Technical Skills** (up to 12) - Grid layout with individual cards
 - **Certifications** (up to 4) - Name + issuing organization
 
@@ -56,8 +57,8 @@ Navigate to: **http://localhost:3001**
 
    - Add your personal information (name, title, company)
    - Upload a profile photo (optional)
-   - Upload up to 2 company logos for the footer (optional)
    - Write a professional summary
+   - Upload up to 2 company logos for the footer (optional)
    - Click "+ Add" buttons to add multiple entries for each section
 
 2. **Preview**: Click "Preview Portfolio →" to see your styled portfolio
@@ -114,6 +115,7 @@ profile-generator/
 - **Cards**: 2-column grid layout with gradient backgrounds
 - **Borders**: 1.5px solid Steel Blue with inner glow effect
 - **Skills Grid**: 4-column responsive layout
+- **Customer Feedback Grid**: 2-column layout with orange accent borders
 - **Footer**: Dual logo display with consistent sizing (50px height in print)
 
 ## 🔧 Key Technical Decisions
@@ -139,6 +141,7 @@ profile-generator/
 
 ## 📝 Recent Updates
 
+- ✅ **NEW: Customer Feedback Section** - Added testimonials with 2-column layout positioned between Key Achievements and Technical Skills
 - ✅ Enhanced border visibility (opacity: 0.3 → 0.6)
 - ✅ Centrally aligned expertise chips
 - ✅ Edge-to-edge print layout with minimal margins
