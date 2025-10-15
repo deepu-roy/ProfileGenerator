@@ -1,16 +1,36 @@
 # Profile PDF Generator
 
-A professional Node.js + Express web application that generates beautiful portfolio PDFs from user form inputs. Features the same stunning design as your SD Worx portfolio with dynamic form controls.
+A professional Node.js + Express web application that generates beautiful portfolio PDFs from user form inputs. Features the same stunning design as your SD Worx portfolio with dynamic form controls and browser-native print-to-PDF functionality.
 
-## Features
+## ✨ Features
 
-- ✨ Beautiful dark-themed UI matching your portfolio design
-- 📸 Upload profile photo
-- 📝 Enter profile summary and job details
-- ➕ **Dynamic "Add" buttons** for projects, achievements, skills, and certifications
-- 👁️ Live preview before generating PDF
-- 📄 Generate professional landscape PDF using Puppeteer
-- 🎨 Styled with your portfolio's color scheme (Federal Blue, Steel Blue, Aerospace Orange)
+### Core Functionality
+
+- 🎨 **SD Worx Portfolio Styling** - Stunning dark-themed UI with exact color matching
+- 📸 **Multi-Image Upload** - Profile photo + 2 company logos in footer
+- 📝 **Complete Profile Builder** - Name, title, company, and professional summary
+- ➕ **Dynamic Form Controls** - Add/Remove buttons for all sections
+- 👁️ **Live Preview** - Real-time styled preview before PDF generation
+- 🖨️ **Browser Print-to-PDF** - Native print functionality with optimized CSS
+- � **Responsive Layout** - Works on all screen sizes
+
+### Dynamic Sections
+
+- **Expertise Chips** (up to 4) - Centrally aligned, pill-styled badges
+- **Project Highlights** (up to 5) - Name + detailed descriptions
+- **Key Achievements** (up to 5) - Title + impact descriptions
+- **Technical Skills** (up to 12) - Grid layout with individual cards
+- **Certifications** (up to 4) - Name + issuing organization
+
+### PDF Optimization
+
+- ✅ **A4 Landscape Format** - Optimized for professional printing
+- ✅ **Edge-to-Edge Layout** - Minimal margins for maximum content
+- ✅ **Exact Color Preservation** - `print-color-adjust: exact` for accurate colors
+- ✅ **Enhanced Borders** - Visible Steel Blue borders (60% opacity)
+- ✅ **Centrally Aligned Chips** - Professional expertise badge positioning
+- ✅ **Dual Logo Footer** - Company branding with consistent sizing
+- ✅ **Print CSS Optimizations** - Dedicated styles for PDF output
 
 ## Getting Started
 
@@ -35,50 +55,97 @@ Navigate to: **http://localhost:3001**
 1. **Fill the Form**:
 
    - Add your personal information (name, title, company)
-   - Upload a profile photo
-   - Click "+ Add" buttons to add:
-     - Expertise areas (up to 4)
-     - Projects with highlights (up to 5)
-     - Key achievements (up to 5)
-     - Technical skills (up to 12)
-     - Certifications (up to 4)
+   - Upload a profile photo (optional)
+   - Upload up to 2 company logos for the footer (optional)
+   - Write a professional summary
+   - Click "+ Add" buttons to add multiple entries for each section
 
-2. **Preview**: Click "Preview Portfolio" to see your styled portfolio
+2. **Preview**: Click "Preview Portfolio →" to see your styled portfolio
 
-3. **Generate PDF**: Click "Download PDF" to get your landscape A4 PDF
+3. **Generate PDF**:
+   - Click the "🖨️ Save as PDF / Print" button in the bottom-right corner
+   - Use your browser's print dialog (Cmd+P / Ctrl+P)
+   - Select "Save as PDF" as the destination
+   - Choose A4 Landscape orientation
+   - Save your professional portfolio PDF!
 
-## Project Structure
+## 📁 Project Structure
 
-```
+```text
 profile-generator/
 ├── src/
-│   └── app.js           # Express server
+│   └── app.js              # Express server setup
 ├── routes/
-│   └── main.js          # Route handlers (form, preview, PDF generation)
+│   └── main.js             # Route handlers (form, preview)
 ├── views/
-│   ├── form.ejs         # Dynamic input form with Add buttons
-│   └── preview.ejs      # Styled preview template
+│   ├── form.ejs            # Dynamic input form with Add/Remove buttons
+│   ├── preview.ejs         # Styled preview with print CSS
+│   └── pdf-template.ejs    # (Legacy - not used)
 ├── public/
-│   └── style.css        # Portfolio styling (dark theme)
-├── uploads/             # User-uploaded photos
-└── package.json
+│   ├── style.css           # Main portfolio styling
+│   └── uploads/            # User-uploaded photos & logos (gitignored)
+├── .gitignore              # Excludes node_modules, uploads, .env
+├── package.json            # Dependencies and scripts
+└── README.md               # This file
 ```
 
-## Tech Stack
+## 🛠️ Tech Stack
 
 - **Backend**: Node.js + Express
-- **Templating**: EJS
-- **File Upload**: Multer
-- **PDF Generation**: Puppeteer (headless Chrome)
-- **Styling**: Custom CSS matching portfolio design
+- **Templating**: EJS (Embedded JavaScript)
+- **File Upload**: Multer (multipart/form-data handling)
+- **PDF Generation**: Browser-native print with CSS `@media print`
+- **Styling**: Custom CSS with SD Worx portfolio design
+- **Version Control**: Git with .gitignore for clean repository
 
-## Color Palette
+## 🎨 Design System
 
-- Federal Blue: `#00004D` (background)
-- Steel Blue: `#3C77AE` (primary brand)
-- Aerospace Orange: `#FF4D00` (accent)
-- Princeton Orange: `#FF9919` (secondary)
-- Alice Blue: `#E6F2FF` (text)
+### Color Palette
+
+- **Federal Blue**: `#00004D` - Primary background
+- **Steel Blue**: `#3C77AE` - Brand color, borders (60% opacity in print)
+- **Aerospace Orange**: `#FF4D00` - Accent color
+- **Princeton Orange**: `#FF9919` - Secondary headings
+- **Alice Blue**: `#E6F2FF` - Primary text color
+
+### Typography & Layout
+
+- **Hero Section**: Gradient background with profile photo and expertise chips
+- **Cards**: 2-column grid layout with gradient backgrounds
+- **Borders**: 1.5px solid Steel Blue with inner glow effect
+- **Skills Grid**: 4-column responsive layout
+- **Footer**: Dual logo display with consistent sizing (50px height in print)
+
+## 🔧 Key Technical Decisions
+
+1. **Removed Puppeteer** - Switched from server-side PDF generation to browser print for:
+
+   - Simpler architecture (116 fewer packages)
+   - Better reliability (no socket hang-up errors)
+   - Client-side control over PDF settings
+   - Reduced server load
+
+2. **Print CSS Optimization** - Dedicated `@media print` styles:
+
+   - `@page { size: A4 landscape; margin: 0; }` for edge-to-edge
+   - `print-color-adjust: exact` for accurate color reproduction
+   - Explicit color values with `!important` to override browser defaults
+   - Reduced padding/margins (8px wrap, 10px hero, 14px cards)
+
+3. **Multiple File Upload** - Changed from single to multiple uploads:
+   - `upload.single('photo')` → `upload.fields([...])`
+   - Supports profile photo + 2 company logos
+   - Each logo displays in footer with max-width/max-height constraints
+
+## 📝 Recent Updates
+
+- ✅ Enhanced border visibility (opacity: 0.3 → 0.6)
+- ✅ Centrally aligned expertise chips
+- ✅ Edge-to-edge print layout with minimal margins
+- ✅ Dual logo support in footer
+- ✅ Improved box shadow (inner glow + softer outer shadow)
+- ✅ Added comprehensive .gitignore
+- ✅ Browser print-to-PDF instead of Puppeteer
 
 ## License
 
