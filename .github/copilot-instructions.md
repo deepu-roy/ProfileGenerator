@@ -1,0 +1,8 @@
+- [x] Clarify Project Requirements: Node.js + Express app for profile PDF generation from user form inputs with portfolio styling.
+- [x] Scaffold the Project: Project folder created, all directories and starter files added.
+- [x] Customize the Project: Express app created, EJS templates with portfolio styling, dynamic form with Add buttons, PDF generation via Puppeteer.
+- [x] Install Required Extensions: None required.
+- [x] Compile the Project: Dependencies installed (express, ejs, multer, puppeteer).
+- [x] Create and Run Task: Server running on port 3001.
+- [x] Launch the Project: Application running at http://localhost:3001
+- [x] Ensure Documentation is Complete: README updated with full instructions and project details.

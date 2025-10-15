@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title><%= data.name %> — Portfolio Preview</title>
+  <link rel="stylesheet" href="/style.css">
+  <style>
+    /* Print-specific styles matching SD Worx portfolio */
+    @page {
+      size: A4 landscape;
+      margin: 0;
+    }
+    
+    @media print {
+      * {
+        -webkit-print-color-adjust: exact !important;
+        color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+      
+      body {
+        background-color: #00004D !important;
+        background: radial-gradient(
+            1200px 600px at 10% -10%,
+            rgba(60, 119, 174, 0.15),
+            transparent
+          ),
+          radial-gradient(
+            900px 500px at 110% 0%,
+            rgba(255, 153, 25, 0.08),
+            transparent
+          ),
+          #00004D !important;
+        color: #E6F2FF !important;
+        margin: 0 !important;
+        padding: 0 !important;
+      }
+      
+      .wrap {
+        margin: 0 !important;
+        padding: 8px !important;
+        max-width: none !important;
+      }
+      
+      .preview-container {
+        padding: 0 !important;
+      }
+      
+      .btn-download {
+        display: none !important;
+      }
+      
+      /* Hero section - keep proportional */
+      .hero {
+        padding: 10px 14px !important;
+        margin-bottom: 8px !important;
+        background: linear-gradient(135deg, rgba(60, 119, 174, 0.15), rgba(255, 153, 25, 0.08)) !important;
+        border: 1.5px solid rgba(60, 119, 174, 0.6) !important;
+        border-radius: 16px !important;
+        box-shadow: 0 0 0 1px rgba(60, 119, 174, 0.2) inset, 0 8px 20px rgba(0, 0, 77, 0.3) !important;
+      }
+      
+      .hero-top {
+        gap: 16px !important;
+      }
+      
+      .photo {
+        width: 96px !important;
+        height: 96px !important;
+        border-width: 3px !important;
+        border-color: #FF9919 !important;
+      }
+      
+      .title {
+        font-size: 20px !important;
+        margin-bottom: 4px !important;
+        color: #E6F2FF !important;
+      }
+      
+      .subtitle {
+        font-size: 12px !important;
+        margin: 3px 0 0 !important;
+        color: rgba(230, 242, 255, 0.7) !important;
+      }
+      
+      .chip {
+        font-size: 9px !important;
+        padding: 3px 7px !important;
+        background: rgba(60, 119, 174, 0.2) !important;
+        border: 1px solid rgba(60, 119, 174, 0.5) !important;
+        color: #E6F2FF !important;
+      }
+      
+      .meta {
+        gap: 6px !important;
+        margin-top: 6px !important;
+        justify-content: center !important;
+      }
+      
+      .profile-summary {
+        font-size: 12px !important;
+        line-height: 1.4 !important;
+        margin-top: 8px !important;
+        color: rgba(230, 242, 255, 0.7) !important;
+      }
+      
+      /* Grid layout - keep same structure as web */
+      .grid {
+        gap: 8px !important;
+        margin-top: 8px !important;
+        display: grid !important;
+        grid-template-columns: repeat(2, 1fr) !important;
+      }
+      
+      /* Cards - maintain web styling with correct colors */
+      .card {
+        padding: 14px !important;
+        margin-bottom: 0 !important;
+        page-break-inside: avoid;
+        background: linear-gradient(180deg, rgba(60, 119, 174, 0.1), rgba(60, 119, 174, 0.15)) !important;
+        border: 1.5px solid rgba(60, 119, 174, 0.6) !important;
+        border-radius: 18px !important;
+        box-shadow: 0 0 0 1px rgba(60, 119, 174, 0.2) inset, 0 8px 20px rgba(0, 0, 77, 0.3) !important;
+      }
+      
+      .card h2 {
+        font-size: 16px !important;
+        margin: 0 0 12px !important;
+        color: #FF9919 !important;
+        font-weight: 700 !important;
+      }
+      
+      .card h3 {
+        font-size: 13px !important;
+        margin: 8px 0 4px !important;
+        color: #E6F2FF !important;
+        font-weight: 600 !important;
+      }
+      
+      .card p {
+        font-size: 11px !important;
+        line-height: 1.4 !important;
+        color: rgba(230, 242, 255, 0.7) !important;
+        margin: 8px 0 !important;
+      }
+      
+      .card li {
+        font-size: 11px !important;
+        line-height: 1.4 !important;
+        color: rgba(230, 242, 255, 0.7) !important;
+      }
+      
+      /* Skills grid - keep web layout */
+      .skills-grid {
+        display: grid !important;
+        grid-template-columns: repeat(4, 1fr) !important;
+        gap: 8px !important;
+        margin-top: 12px !important;
+      }
+      
+      .skill-item {
+        padding: 8px 6px !important;
+        min-height: 60px !important;
+        font-size: 10px !important;
+        background: rgba(60, 119, 174, 0.1) !important;
+        border: 1px solid rgba(60, 119, 174, 0.5) !important;
+        border-radius: 12px !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+        color: #E6F2FF !important;
+        font-weight: 600 !important;
+      }
+      
+      /* Certifications grid */
+      .cert-grid {
+        display: grid !important;
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 8px !important;
+        margin-top: 12px !important;
+      }
+      
+      .cert-item {
+        padding: 10px !important;
+        font-size: 10px !important;
+        background: rgba(60, 119, 174, 0.05) !important;
+        border: 1px solid rgba(60, 119, 174, 0.5) !important;
+        border-radius: 8px !important;
+        color: rgba(230, 242, 255, 0.7) !important;
+      }
+      
+      .cert-item strong {
+        font-size: 11px !important;
+        display: block !important;
+        color: #E6F2FF !important;
+        margin-bottom: 2px !important;
+        font-weight: 600 !important;
+      }
+      
+      .cert-item small {
+        color: rgba(230, 242, 255, 0.7) !important;
+      }
+      
+      /* Project dividers */
+      .card > div {
+        page-break-inside: avoid;
+      }
+      
+      /* Footer logos */
+      .logo-footer {
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        gap: 40px !important;
+        margin-top: 12px !important;
+        padding: 8px 0 !important;
+      }
+      
+      .logo-footer img {
+        height: 50px !important;
+        max-height: 50px !important;
+        width: auto !important;
+        max-width: 180px !important;
+        object-fit: contain !important;
+        opacity: 0.85 !important;
+      }
+    }
+    
+    .btn-download {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 1000;
+      padding: 10px 16px;
+      font-size: 13px;
+      box-shadow: 0 4px 16px rgba(60, 119, 174, 0.5);
+      transition: all 0.3s ease;
+    }
+    
+    .btn-download:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(255, 77, 0, 0.6);
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <!-- Print/Save PDF Button -->
+    <button class="btn btn-submit btn-download" onclick="window.print()">
+      🖨️ Save as PDF / Print
+    </button>
+    <div class="preview-container">
+      <!-- Header Section -->
+      <header class="hero">
+        <div class="hero-top">
+          <% if (data.photo) { %>
+            <div class="photo">
+              <img src="<%= data.photo %>" alt="<%= data.name %>" />
+            </div>
+          <% } %>
+          <div class="info">
+            <h1 class="title"><%= data.name %></h1>
+            <p class="subtitle">
+              <%= data.title %><%= data.company ? ' | ' + data.company : '' %>
+            </p>
+            <% if (data.chips && data.chips.length > 0) { %>
+              <div class="meta">
+                <% data.chips.forEach(function(chip){ if(chip) { %>
+                  <span class="chip"><%= chip %></span>
+                <% }}); %>
+              </div>
+            <% } %>
+            <p class="profile-summary"><%= data.summary %></p>
+          </div>
+        </div>
+      </header>
+
+      <!-- Main Grid -->
+      <main class="grid">
+        <!-- Projects Section -->
+        <% if (data.projectNames && Array.isArray(data.projectNames) && data.projectNames.length > 0) { %>
+          <section class="card">
+            <h2>Project Highlights</h2>
+            <% for(let i=0; i<data.projectNames.length; i++) { 
+              if(data.projectNames[i] && data.projectNames[i].trim()) { %>
+              <div style="margin-bottom: 16px; padding-bottom: 12px; <% if(i < data.projectNames.length - 1) { %>border-bottom: 1px solid var(--border);<% } %>">
+                <h3><%= data.projectNames[i] %></h3>
+                <p><%= data.projectHighlights[i] || '' %></p>
+              </div>
+            <% }} %>
+          </section>
+        <% } %>
+
+        <!-- Achievements Section -->
+        <% if (data.achievementTitles && Array.isArray(data.achievementTitles) && data.achievementTitles.length > 0) { %>
+          <section class="card">
+            <h2>Key Achievements</h2>
+            <% for(let i=0; i<data.achievementTitles.length; i++) { 
+              if(data.achievementTitles[i] && data.achievementTitles[i].trim()) { %>
+              <div style="margin-bottom: 12px;">
+                <h3><%= data.achievementTitles[i] %></h3>
+                <p><%= data.achievementDetails[i] || '' %></p>
+              </div>
+            <% }} %>
+          </section>
+        <% } %>
+
+        <!-- Skills Section -->
+        <% if (data.skills && Array.isArray(data.skills) && data.skills.length > 0) { %>
+          <section class="card">
+            <h2>Technical Skills</h2>
+            <div class="skills-grid">
+              <% data.skills.forEach(function(skill){ 
+                if(skill && skill.trim()) { %>
+                <div class="skill-item"><%= skill %></div>
+              <% }}); %>
+            </div>
+          </section>
+        <% } %>
+
+        <!-- Certifications Section -->
+        <% if (data.certNames && Array.isArray(data.certNames) && data.certNames.length > 0) { %>
+          <section class="card">
+            <h2>Certifications</h2>
+            <div class="cert-grid">
+              <% for(let i=0; i<data.certNames.length; i++) { 
+                if(data.certNames[i] && data.certNames[i].trim()) { %>
+                <div class="cert-item">
+                  <strong><%= data.certNames[i] %></strong>
+                  <small><%= data.certIssuers[i] || '' %></small>
+                </div>
+              <% }} %>
+            </div>
+          </section>
+        <% } %>
+      </main>
+
+      <!-- Footer with Company Logos -->
+      <% if (data.logo1 || data.logo2) { %>
+      <footer class="logo-footer">
+        <% if (data.logo1) { %>
+          <img src="<%= data.logo1 %>" alt="Company Logo 1">
+        <% } %>
+        <% if (data.logo2) { %>
+          <img src="<%= data.logo2 %>" alt="Company Logo 2">
+        <% } %>
+      </footer>
+      <% } %>
+    </div>
+  </div>
+  
+  <script>
+    // Enhanced print functionality
+    window.addEventListener('beforeprint', function() {
+      document.body.classList.add('printing');
+    });
+    
+    window.addEventListener('afterprint', function() {
+      document.body.classList.remove('printing');
+    });
+  </script>
+</body>
+</html>
