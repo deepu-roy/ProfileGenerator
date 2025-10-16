@@ -181,8 +181,47 @@ textarea::placeholder {
   border-left: 3px solid var(--brand-2);
 }
 
+.partnership-item {
+  border-left: 3px solid var(--brand);
+  background: rgba(60, 119, 174, 0.1);
+}
+
+.achievement-item {
+  border-left: 3px solid var(--brand-2);
+}
+
 .feedback-item {
   border-left: 3px solid var(--accent);
+}
+
+/* Item Icons */
+.item-icon {
+  display: inline-block;
+  font-size: 18px;
+  margin-right: 8px;
+  vertical-align: middle;
+  float: left;
+  margin-top: 8px;
+}
+
+.dynamic-item input[type="number"] {
+  width: 100%;
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: rgba(60, 119, 174, 0.1);
+  color: var(--text);
+  font-family: inherit;
+  font-size: 14px;
+  transition: all 0.2s ease;
+  margin-bottom: 8px;
+}
+
+.dynamic-item input[type="number"]:focus {
+  outline: none;
+  border-color: var(--brand);
+  background: rgba(0, 0, 77, 0.4);
+  box-shadow: 0 0 0 3px rgba(60, 119, 174, 0.2);
 }
 
 /* Buttons */

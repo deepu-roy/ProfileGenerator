@@ -96,9 +96,35 @@
             </button>
           </div>
 
+          <!-- Partnership Section -->
+          <div class="form-section">
+            <h2>🤝 Partnership</h2>
+            <div class="dynamic-item partnership-item">
+              <span class="item-icon">🤝</span>
+              <input
+                type="text"
+                name="partnershipTitle"
+                placeholder="Partnership Title (e.g., Partnership)"
+                value="Partnership"
+              />
+              <input
+                type="number"
+                name="partnershipYears"
+                placeholder="Years of collaboration (e.g., 3)"
+                min="1"
+                max="50"
+              />
+              <input
+                type="text"
+                name="partnershipCompany"
+                placeholder="Partner Company (e.g., SD Worx)"
+              />
+            </div>
+          </div>
+
           <!-- Projects Section -->
           <div class="form-section">
-            <h2>Project Highlights (Up to 5)</h2>
+            <h2>📋 Project Highlights (Up to 5)</h2>
             <div id="projectsContainer"></div>
             <button type="button" class="btn-add" onclick="addProject()">
               + Add Project
@@ -107,7 +133,7 @@
 
           <!-- Achievements Section -->
           <div class="form-section">
-            <h2>Key Achievements (Up to 5)</h2>
+            <h2>🏆 Key Achievements (Up to 5)</h2>
             <div id="achievementsContainer"></div>
             <button type="button" class="btn-add" onclick="addAchievement()">
               + Add Achievement
@@ -116,7 +142,7 @@
 
           <!-- Customer Feedback Section -->
           <div class="form-section">
-            <h2>Customer Feedback (Up to 4)</h2>
+            <h2>💬 Customer Feedback (Up to 4)</h2>
             <div id="feedbackContainer"></div>
             <button type="button" class="btn-add" onclick="addFeedback()">
               + Add Feedback
@@ -173,6 +199,7 @@
         const div = document.createElement("div");
         div.className = "dynamic-item project-item";
         div.innerHTML = `
+        <span class="item-icon">📋</span>
         <input type="text" name="projectNames[]" placeholder="Project Name" required>
         <textarea name="projectHighlights[]" rows="3" placeholder="Project description/highlights..." required></textarea>
         <button type="button" class="btn-remove" onclick="this.parentElement.remove(); projectCount--;">Remove</button>
@@ -186,8 +213,9 @@
           return alert("Maximum 5 achievements allowed");
         const container = document.getElementById("achievementsContainer");
         const div = document.createElement("div");
-        div.className = "dynamic-item";
+        div.className = "dynamic-item achievement-item";
         div.innerHTML = `
+        <span class="item-icon">🏆</span>
         <input type="text" name="achievementTitles[]" placeholder="Achievement Title" required>
         <textarea name="achievementDetails[]" rows="2" placeholder="Brief description..." required></textarea>
         <button type="button" class="btn-remove" onclick="this.parentElement.remove(); achievementCount--;">Remove</button>

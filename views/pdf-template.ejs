@@ -276,7 +276,22 @@
       </section>
 
       <div class="grid">
-        <% if (data.projectNames && Array.isArray(data.projectNames) &&
+        <% if (data.partnershipCompany && data.partnershipCompany.trim()) { %>
+        <div class="card">
+          <h2>Partnership</h2>
+          <div>
+            <h3><%= data.partnershipTitle || 'Partnership' %></h3>
+            <% if (data.partnershipYears) { %>
+            <p>
+              <%= data.partnershipYears %>+ years of collaboration with <%=
+              data.partnershipCompany %>
+            </p>
+            <% } else { %>
+            <p>Partnership with <%= data.partnershipCompany %></p>
+            <% } %>
+          </div>
+        </div>
+        <% } %> <% if (data.projectNames && Array.isArray(data.projectNames) &&
         data.projectNames.length > 0) { %>
         <div class="card">
           <h2>Key Projects</h2>
