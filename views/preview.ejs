@@ -276,6 +276,13 @@
       transform: translateY(-2px);
       box-shadow: 0 8px 24px rgba(255, 77, 0, 0.6);
     }
+    
+    .btn-edit:hover {
+      background: linear-gradient(180deg, #ff6b2d, #ff4d00) !important;
+      transform: translateY(-2px) !important;
+      box-shadow: 0 6px 20px rgba(255, 77, 0, 0.6) !important;
+      border-color: #ff6b2d !important;
+    }
   </style>
 </head>
 <body>
@@ -288,7 +295,7 @@
       <button class="btn btn-submit" onclick="togglePresentationMode()" id="toggleBtn" style="background: var(--steel-blue);">
         📊 Toggle Presentation Mode
       </button>
-      <a href="/" class="btn btn-edit" style="text-decoration: none; display: inline-block; padding: 12px 24px;">
+      <a href="/" class="btn btn-edit" style="text-decoration: none; display: inline-block; padding: 10px 20px; background: linear-gradient(180deg, #ff4d00, #e64400); color: white; border: 2px solid #ff4d00; border-radius: 8px; font-weight: 700; font-size: 14px; box-shadow: 0 3px 12px rgba(255, 77, 0, 0.4); transition: all 0.3s ease;">
         ← Edit Form
       </a>
     </div>
