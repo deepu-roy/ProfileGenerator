@@ -6,13 +6,18 @@
   <title><%= data.name %> — Portfolio Preview</title>
   <link rel="stylesheet" href="/style.css">
   <style>
-    /* Print-specific styles matching SD Worx portfolio */
-    @page {
-      size: A4 landscape;
-      margin: 0;
-    }
-    
+    /* Print-specific styles for natural portrait PDF layout */
     @media print {
+      @page {
+        size: A4 portrait;
+        margin: 0mm;
+      }
+      
+      html {
+        width: 100%;
+        height: auto;
+      }
+      
       * {
         -webkit-print-color-adjust: exact !important;
         color-adjust: exact !important;
@@ -20,6 +25,8 @@
       }
       
       body {
+        width: 100% !important;
+        height: auto !important;
         background-color: #00004D !important;
         background: radial-gradient(
             1200px 600px at 10% -10%,
@@ -39,15 +46,29 @@
       
       .wrap {
         margin: 0 !important;
-        padding: 8px !important;
+        padding: 0 !important;
         max-width: none !important;
+        width: 100% !important;
+        height: auto !important;
+        overflow: visible !important;
       }
       
       .preview-container {
-        padding: 0 !important;
+        padding: 20px !important;
+        height: auto !important;
+        min-height: auto !important;
+        overflow: visible !important;
       }
       
-      .btn-download {
+      .grid {
+        overflow: visible !important;
+      }
+      
+      /* Hide all action buttons in print */
+      .btn-download,
+      .btn,
+      button,
+      a.btn-edit {
         display: none !important;
       }
       
@@ -59,6 +80,8 @@
         border: 1.5px solid rgba(60, 119, 174, 0.6) !important;
         border-radius: 16px !important;
         box-shadow: 0 0 0 1px rgba(60, 119, 174, 0.2) inset, 0 8px 20px rgba(0, 0, 77, 0.3) !important;
+        overflow: visible !important;
+        page-break-inside: avoid;
       }
       
       .hero-top {
@@ -105,23 +128,37 @@
         color: rgba(230, 242, 255, 0.7) !important;
       }
       
-      /* Grid layout - keep same structure as web */
+      /* Grid layout - single column for PDF portrait layout */
       .grid {
-        gap: 8px !important;
-        margin-top: 8px !important;
-        display: grid !important;
-        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 12px !important;
+        margin-top: 12px !important;
+        display: block !important;
       }
       
       /* Cards - maintain web styling with correct colors */
       .card {
-        padding: 14px !important;
-        margin-bottom: 0 !important;
+        padding: 16px !important;
+        margin-bottom: 12px !important;
         page-break-inside: avoid;
         background: linear-gradient(180deg, rgba(60, 119, 174, 0.1), rgba(60, 119, 174, 0.15)) !important;
         border: 1.5px solid rgba(60, 119, 174, 0.6) !important;
         border-radius: 18px !important;
         box-shadow: 0 0 0 1px rgba(60, 119, 174, 0.2) inset, 0 8px 20px rgba(0, 0, 77, 0.3) !important;
+        overflow: visible !important;
+      }
+      
+      /* Allow page breaks between cards */
+      .grid > .card {
+        page-break-before: auto;
+        page-break-after: auto;
+      }
+      
+      /* Keep individual items together when possible */
+      .card > div,
+      .card > p,
+      .cert-item,
+      .skill-item {
+        page-break-inside: avoid;
       }
       
       .card h2 {
@@ -151,18 +188,18 @@
         color: rgba(230, 242, 255, 0.7) !important;
       }
       
-      /* Skills grid - keep web layout */
+      /* Skills grid - 3 columns for portrait PDF */
       .skills-grid {
         display: grid !important;
-        grid-template-columns: repeat(4, 1fr) !important;
-        gap: 8px !important;
+        grid-template-columns: repeat(3, 1fr) !important;
+        gap: 10px !important;
         margin-top: 12px !important;
       }
       
       .skill-item {
-        padding: 8px 6px !important;
-        min-height: 60px !important;
-        font-size: 10px !important;
+        padding: 10px 8px !important;
+        min-height: 70px !important;
+        font-size: 11px !important;
         background: rgba(60, 119, 174, 0.1) !important;
         border: 1px solid rgba(60, 119, 174, 0.5) !important;
         border-radius: 12px !important;
@@ -174,17 +211,17 @@
         font-weight: 600 !important;
       }
       
-      /* Certifications grid */
+      /* Certifications grid - keep 2 columns */
       .cert-grid {
         display: grid !important;
         grid-template-columns: repeat(2, 1fr) !important;
-        gap: 8px !important;
+        gap: 10px !important;
         margin-top: 12px !important;
       }
       
       .cert-item {
-        padding: 10px !important;
-        font-size: 10px !important;
+        padding: 12px !important;
+        font-size: 11px !important;
         background: rgba(60, 119, 174, 0.05) !important;
         border: 1px solid rgba(60, 119, 174, 0.5) !important;
         border-radius: 8px !important;
@@ -203,11 +240,6 @@
         color: rgba(230, 242, 255, 0.7) !important;
       }
       
-      /* Project dividers */
-      .card > div {
-        page-break-inside: avoid;
-      }
-      
       /* Footer logos */
       .logo-footer {
         display: flex !important;
@@ -216,6 +248,7 @@
         gap: 40px !important;
         margin-top: 12px !important;
         padding: 8px 0 !important;
+        page-break-inside: avoid;
       }
       
       .logo-footer img {
@@ -247,10 +280,18 @@
 </head>
 <body>
   <div class="wrap">
-    <!-- Print/Save PDF Button -->
-    <button class="btn btn-submit btn-download" onclick="window.print()">
-      🖨️ Save as PDF / Print
-    </button>
+    <!-- Action Buttons -->
+    <div style="display: flex; gap: 12px; margin-bottom: 16px;">
+      <button class="btn btn-submit btn-download" onclick="window.print()">
+        🖨️ Save as PDF
+      </button>
+      <button class="btn btn-submit" onclick="togglePresentationMode()" id="toggleBtn" style="background: var(--steel-blue);">
+        📊 Toggle Presentation Mode
+      </button>
+      <a href="/" class="btn btn-edit" style="text-decoration: none; display: inline-block; padding: 12px 24px;">
+        ← Edit Form
+      </a>
+    </div>
     <div class="preview-container">
       <!-- Header Section -->
       <header class="hero">
@@ -396,6 +437,26 @@
     window.addEventListener('afterprint', function() {
       document.body.classList.remove('printing');
     });
+
+    // Toggle presentation mode for 16:9 aspect ratio preview
+    function togglePresentationMode() {
+      const body = document.body;
+      const btn = document.getElementById('toggleBtn');
+      
+      if (body.classList.contains('presentation-view')) {
+        body.classList.remove('presentation-view');
+        btn.textContent = '📊 Toggle Presentation Mode';
+        btn.style.background = 'var(--steel-blue)';
+      } else {
+        body.classList.add('presentation-view');
+        btn.textContent = '📄 Normal View';
+        btn.style.background = 'var(--princeton-orange)';
+      }
+    }
+
+    // Info message on load
+    console.log('%c16:9 PowerPoint Layout Active', 'color: #ff9919; font-size: 14px; font-weight: bold;');
+    console.log('PDF will be generated at 1920x1080 (16:9 aspect ratio) - Perfect for PowerPoint!');
   </script>
 </body>
 </html>

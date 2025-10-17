@@ -180,6 +180,34 @@
       let skillCount = 0;
       let certCount = 0;
 
+      // Save form data to sessionStorage
+      function saveFormData() {
+        const formData = new FormData(document.getElementById("mainForm"));
+        const data = {};
+
+        // Save all form fields
+        for (let [key, value] of formData.entries()) {
+          if (data[key]) {
+            if (Array.isArray(data[key])) {
+              data[key].push(value);
+            } else {
+              data[key] = [data[key], value];
+            }
+          } else {
+            data[key] = value;
+          }
+        }
+
+        sessionStorage.setItem("profileFormData", JSON.stringify(data));
+      }
+
+      // Auto-save on input changes
+      function setupAutoSave() {
+        const form = document.getElementById("mainForm");
+        form.addEventListener("input", saveFormData);
+        form.addEventListener("change", saveFormData);
+      }
+
       function addChip() {
         if (chipCount >= 4) return alert("Maximum 4 expertise areas allowed");
         const container = document.getElementById("chipsContainer");
@@ -187,7 +215,7 @@
         div.className = "dynamic-item";
         div.innerHTML = `
         <input type="text" name="chips[]" placeholder="e.g., Enterprise QA Transformation" required>
-        <button type="button" class="btn-remove" onclick="this.parentElement.remove(); chipCount--;">Remove</button>
+        <button type="button" class="btn-remove" onclick="this.parentElement.remove(); chipCount--; saveFormData();">Remove</button>
       `;
         container.appendChild(div);
         chipCount++;
@@ -202,7 +230,7 @@
         <span class="item-icon">📋</span>
         <input type="text" name="projectNames[]" placeholder="Project Name" required>
         <textarea name="projectHighlights[]" rows="3" placeholder="Project description/highlights..." required></textarea>
-        <button type="button" class="btn-remove" onclick="this.parentElement.remove(); projectCount--;">Remove</button>
+        <button type="button" class="btn-remove" onclick="this.parentElement.remove(); projectCount--; saveFormData();">Remove</button>
       `;
         container.appendChild(div);
         projectCount++;
@@ -218,7 +246,7 @@
         <span class="item-icon">🏆</span>
         <input type="text" name="achievementTitles[]" placeholder="Achievement Title" required>
         <textarea name="achievementDetails[]" rows="2" placeholder="Brief description..." required></textarea>
-        <button type="button" class="btn-remove" onclick="this.parentElement.remove(); achievementCount--;">Remove</button>
+        <button type="button" class="btn-remove" onclick="this.parentElement.remove(); achievementCount--; saveFormData();">Remove</button>
       `;
         container.appendChild(div);
         achievementCount++;
@@ -234,7 +262,7 @@
         <input type="text" name="feedbackCustomers[]" placeholder="Customer/Client Name" required>
         <input type="text" name="feedbackPositions[]" placeholder="Customer Position/Title" required>
         <textarea name="feedbackComments[]" rows="3" placeholder="Customer feedback/testimonial..." required></textarea>
-        <button type="button" class="btn-remove" onclick="this.parentElement.remove(); feedbackCount--;">Remove</button>
+        <button type="button" class="btn-remove" onclick="this.parentElement.remove(); feedbackCount--; saveFormData();">Remove</button>
       `;
         container.appendChild(div);
         feedbackCount++;
@@ -247,7 +275,7 @@
         div.className = "dynamic-item";
         div.innerHTML = `
         <input type="text" name="skills[]" placeholder="e.g., Playwright, TypeScript, Docker" required>
-        <button type="button" class="btn-remove" onclick="this.parentElement.remove(); skillCount--;">Remove</button>
+        <button type="button" class="btn-remove" onclick="this.parentElement.remove(); skillCount--; saveFormData();">Remove</button>
       `;
         container.appendChild(div);
         skillCount++;
@@ -261,19 +289,200 @@
         div.innerHTML = `
         <input type="text" name="certNames[]" placeholder="Certification Name" required>
         <input type="text" name="certIssuers[]" placeholder="Issuing Organization" required>
-        <button type="button" class="btn-remove" onclick="this.parentElement.remove(); certCount--;">Remove</button>
+        <button type="button" class="btn-remove" onclick="this.parentElement.remove(); certCount--; saveFormData();">Remove</button>
       `;
         container.appendChild(div);
         certCount++;
       }
 
-      // Add initial items
-      addChip();
-      addProject();
-      addAchievement();
-      addFeedback();
-      addSkill();
-      addCertification();
+      // Restore form data from sessionStorage
+      function restoreFormData() {
+        const savedData = sessionStorage.getItem("profileFormData");
+        if (!savedData) return;
+
+        try {
+          const data = JSON.parse(savedData);
+
+          // Restore simple fields
+          [
+            "name",
+            "title",
+            "company",
+            "summary",
+            "partnershipTitle",
+            "partnershipYears",
+            "partnershipCompany",
+          ].forEach((field) => {
+            const input = document.querySelector(`[name="${field}"]`);
+            if (input && data[field]) {
+              input.value = data[field];
+            }
+          });
+
+          // Restore arrays with dynamic addition
+          const arrayFields = {
+            "chips[]": {
+              container: "chipsContainer",
+              addFunc: addChip,
+              count: "chipCount",
+            },
+            "projectNames[]": {
+              container: "projectsContainer",
+              addFunc: addProject,
+              count: "projectCount",
+            },
+            "achievementTitles[]": {
+              container: "achievementsContainer",
+              addFunc: addAchievement,
+              count: "achievementCount",
+            },
+            "feedbackCustomers[]": {
+              container: "feedbackContainer",
+              addFunc: addFeedback,
+              count: "feedbackCount",
+            },
+            "skills[]": {
+              container: "skillsContainer",
+              addFunc: addSkill,
+              count: "skillCount",
+            },
+            "certNames[]": {
+              container: "certificationsContainer",
+              addFunc: addCertification,
+              count: "certCount",
+            },
+          };
+
+          Object.keys(arrayFields).forEach((fieldName) => {
+            const values = Array.isArray(data[fieldName])
+              ? data[fieldName]
+              : data[fieldName]
+              ? [data[fieldName]]
+              : [];
+            const config = arrayFields[fieldName];
+
+            // Add additional items if needed
+            const currentCount = document.querySelectorAll(
+              `[name="${fieldName}"]`
+            ).length;
+            for (let i = currentCount; i < values.length; i++) {
+              config.addFunc();
+            }
+
+            // Fill in the values
+            const inputs = document.querySelectorAll(`[name="${fieldName}"]`);
+            inputs.forEach((input, index) => {
+              if (values[index]) input.value = values[index];
+            });
+          });
+
+          // Restore project highlights
+          if (data["projectHighlights[]"]) {
+            const highlights = Array.isArray(data["projectHighlights[]"])
+              ? data["projectHighlights[]"]
+              : [data["projectHighlights[]"]];
+            const textareas = document.querySelectorAll(
+              '[name="projectHighlights[]"]'
+            );
+            textareas.forEach((textarea, index) => {
+              if (highlights[index]) textarea.value = highlights[index];
+            });
+          }
+
+          // Restore achievement details
+          if (data["achievementDetails[]"]) {
+            const details = Array.isArray(data["achievementDetails[]"])
+              ? data["achievementDetails[]"]
+              : [data["achievementDetails[]"]];
+            const textareas = document.querySelectorAll(
+              '[name="achievementDetails[]"]'
+            );
+            textareas.forEach((textarea, index) => {
+              if (details[index]) textarea.value = details[index];
+            });
+          }
+
+          // Restore feedback positions and comments
+          if (data["feedbackPositions[]"]) {
+            const positions = Array.isArray(data["feedbackPositions[]"])
+              ? data["feedbackPositions[]"]
+              : [data["feedbackPositions[]"]];
+            const inputs = document.querySelectorAll(
+              '[name="feedbackPositions[]"]'
+            );
+            inputs.forEach((input, index) => {
+              if (positions[index]) input.value = positions[index];
+            });
+          }
+
+          if (data["feedbackComments[]"]) {
+            const comments = Array.isArray(data["feedbackComments[]"])
+              ? data["feedbackComments[]"]
+              : [data["feedbackComments[]"]];
+            const textareas = document.querySelectorAll(
+              '[name="feedbackComments[]"]'
+            );
+            textareas.forEach((textarea, index) => {
+              if (comments[index]) textarea.value = comments[index];
+            });
+          }
+
+          // Restore certification issuers
+          if (data["certIssuers[]"]) {
+            const issuers = Array.isArray(data["certIssuers[]"])
+              ? data["certIssuers[]"]
+              : [data["certIssuers[]"]];
+            const inputs = document.querySelectorAll('[name="certIssuers[]"]');
+            inputs.forEach((input, index) => {
+              if (issuers[index]) input.value = issuers[index];
+            });
+          }
+
+          console.log("✅ Form data restored from previous session");
+        } catch (e) {
+          console.error("Error restoring form data:", e);
+        }
+      }
+
+      // Initialize form
+      function initForm() {
+        // Add initial items first
+        addChip();
+        addProject();
+        addAchievement();
+        addFeedback();
+        addSkill();
+        addCertification();
+
+        // Then restore saved data
+        restoreFormData();
+
+        // Setup auto-save
+        setupAutoSave();
+
+        // Add clear button functionality
+        const clearBtn = document.createElement("button");
+        clearBtn.type = "button";
+        clearBtn.className = "btn-edit";
+        clearBtn.textContent = "🗑️ Clear Form Data";
+        clearBtn.style.marginLeft = "12px";
+        clearBtn.onclick = () => {
+          if (confirm("Are you sure you want to clear all saved form data?")) {
+            sessionStorage.removeItem("profileFormData");
+            location.reload();
+          }
+        };
+        document
+          .querySelector(".btn-submit")
+          .parentElement.appendChild(clearBtn);
+      }
+
+      // Run initialization when DOM is ready
+      if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", initForm);
+      } else {
+        initForm();
+      }
     </script>
   </body>
 </html>

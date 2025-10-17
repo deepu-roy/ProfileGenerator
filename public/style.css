@@ -51,6 +51,21 @@ body {
   padding: 0 24px;
 }
 
+/* 16:9 Aspect Ratio for PowerPoint (1920x1080 or scaled) */
+.wrap.presentation-mode {
+  max-width: 1600px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0;
+}
+
+.presentation-mode .preview-container,
+.presentation-mode .form-container {
+  border-radius: 0;
+  min-height: 900px;
+  padding: 40px 60px;
+}
+
 /* Form Styling */
 .form-container {
   background: linear-gradient(
@@ -539,4 +554,224 @@ textarea::placeholder {
   line-height: 1.4;
   font-style: italic;
   font-size: 11px;
+}
+
+/* ========================================
+   16:9 ASPECT RATIO FOR POWERPOINT
+   Target: 1920x1080 (or 1600x900 scaled)
+   ======================================== */
+
+@media print {
+  @page {
+    size: 1920px 1080px;
+    margin: 0;
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+    background: radial-gradient(
+        1200px 600px at 10% -10%,
+        rgba(60, 119, 174, 0.15),
+        transparent
+      ),
+      radial-gradient(
+        900px 500px at 110% 0%,
+        rgba(255, 153, 25, 0.08),
+        transparent
+      ),
+      var(--bg);
+    width: 1920px;
+    height: 1080px;
+    overflow: hidden;
+  }
+
+  .wrap {
+    max-width: 1920px;
+    width: 1920px;
+    height: 1080px;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+  }
+
+  .preview-container {
+    border-radius: 0;
+    padding: 50px 80px;
+    min-height: 1080px;
+    max-height: 1080px;
+    overflow: hidden;
+    box-shadow: none;
+  }
+
+  .hero {
+    margin-bottom: 20px;
+    padding: 20px 30px;
+  }
+
+  .hero-top {
+    gap: 24px;
+  }
+
+  .photo {
+    width: 110px;
+    height: 110px;
+  }
+
+  .title {
+    font-size: 28px;
+  }
+
+  .subtitle {
+    font-size: 14px;
+  }
+
+  .profile-summary {
+    font-size: 14px;
+  }
+
+  .chip {
+    font-size: 11px;
+    padding: 4px 10px;
+  }
+
+  .grid {
+    gap: 18px;
+  }
+
+  .card {
+    padding: 18px;
+  }
+
+  .card h3 {
+    font-size: 16px;
+  }
+
+  .project-item,
+  .achievement-item {
+    padding: 12px;
+    margin-bottom: 10px;
+  }
+
+  .project-item h4,
+  .achievement-item h4 {
+    font-size: 14px;
+  }
+
+  .project-item p,
+  .achievement-item p {
+    font-size: 12px;
+  }
+
+  .skills-grid {
+    gap: 8px;
+  }
+
+  .skill-tag {
+    font-size: 11px;
+    padding: 5px 10px;
+  }
+
+  .cert-item {
+    padding: 10px;
+    margin-bottom: 8px;
+  }
+
+  .cert-item strong {
+    font-size: 13px;
+  }
+
+  .cert-item small {
+    font-size: 11px;
+  }
+
+  .feedback-grid {
+    gap: 10px;
+  }
+
+  .feedback-item {
+    padding: 10px;
+    font-size: 11px;
+  }
+
+  .feedback-item .customer-name {
+    font-size: 12px;
+  }
+
+  .feedback-item .customer-position {
+    font-size: 10px;
+  }
+
+  .feedback-item .customer-comment {
+    font-size: 10px;
+  }
+
+  .logo-footer {
+    margin-top: 20px;
+    padding: 12px 0;
+  }
+
+  .logo-footer img {
+    height: 50px;
+    max-height: 50px;
+  }
+
+  /* Hide print button on PDF */
+  .btn-download,
+  .btn-edit {
+    display: none !important;
+  }
+
+  /* Partnership section for print */
+  .partnership-card {
+    padding: 18px;
+  }
+
+  .partnership-card h3 {
+    font-size: 16px;
+  }
+
+  .partnership-card p {
+    font-size: 13px;
+  }
+}
+
+/* Screen presentation mode for 16:9 preview */
+@media screen and (min-width: 1400px) {
+  body.presentation-view {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+  }
+
+  body.presentation-view .wrap {
+    max-width: 1600px;
+    width: 1600px;
+    margin: 40px auto;
+    padding: 0;
+  }
+
+  body.presentation-view .preview-container {
+    border-radius: 8px;
+    padding: 50px 70px;
+    min-height: 900px;
+  }
+
+  body.presentation-view .hero {
+    padding: 20px 30px;
+  }
+
+  body.presentation-view .photo {
+    width: 110px;
+    height: 110px;
+  }
+
+  body.presentation-view .title {
+    font-size: 28px;
+  }
+
+  body.presentation-view .grid {
+    gap: 20px;
+  }
 }

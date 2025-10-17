@@ -3,7 +3,7 @@
     "name": "Deepu Roy",
     "title": "Principal Consultant - Quality Engineering & AI/ML Enablement",
     "company": "DevOn",
-    "summary": "Seasoned Quality Engineering leader with 15+ years driving enterprise digital transformation through AI/ML integration, advanced test automation, and agile coaching. Specialized in modernizing legacy systems, implementing ML-driven testing strategies, and leading cross-functional teams across 15+ countries for global payroll platforms.",
+    "summary": "Strategic technical leader transforming enterprise QA and automation delivery with 20 years of experience. Expert in test automation platforms, AI/ML workflows, and global team mentorship.",
     "photo": "profile-photo.jpg",
     "logo1": "company-logo-1.png",
     "logo2": "company-logo-2.png"
@@ -17,82 +17,66 @@
   "partnership": {
     "partnershipTitle": "Partnership",
     "partnershipYears": "3",
-    "partnershipCompany": "ABCD"
+    "partnershipCompany": "SDWorx"
   },
   "projectHighlights": [
     {
-      "projectName": "Sweden Payroll - QA Framework Modernization",
-      "projectDescription": "Led the complete overhaul of legacy testing infrastructure, implementing advanced BDD Selenium automation framework with 95% test coverage. Reduced regression testing cycles by 60% while achieving 99.8% accuracy in payroll calculations validation across 500+ test scenarios."
+      "projectName": "Sweden Payroll - Regression Automation",
+      "projectDescription": "Monthly releases delivered with speed and quality. The BDD Selenium-based framework is instrumental in uncovering issues and enabling complete system testing faster. Verifies working of backend process and generated files including pdf, eliminating complex manual verifications. Its specialty: targeting multiple customer environments and providing actionable results."
     },
     {
-      "projectName": "Sweden Flow Migration - Legacy System Support",
-      "projectDescription": "Provided critical QA leadership during complex legacy system migration, establishing comprehensive testing protocols and validation frameworks. Ensured zero data loss and 100% functional parity during the transition, supporting business continuity for 50,000+ employees."
+      "projectName": "Sweden Flow - Regression Automation",
+      "projectDescription": "Selenium BDD framework runs daily, providing rapid feedback as the team migrates from legacy systems. This automation is instrumental in identifying issues early and supporting a smooth transition."
     },
     {
-      "projectName": "AI-Powered Test Optimization Platform",
-      "projectDescription": "Pioneered ML-driven test suite optimization using predictive analytics to identify high-risk areas and optimize test execution paths. Achieved 45% reduction in test execution time while maintaining 95% defect detection accuracy through intelligent test selection algorithms."
-    },
-    {
-      "projectName": "Global QA Platform Modernization Initiative",
-      "projectDescription": "Orchestrated enterprise-wide QA transformation across 15 countries, standardizing testing practices and implementing unified automation frameworks. Delivered 80% improvement in release confidence and established consistent quality metrics across all regional deployments."
-    },
-    {
-      "projectName": "DevOps Integration & CI/CD Pipeline Enhancement",
-      "projectDescription": "Architected comprehensive DevOps integration strategy, implementing automated testing pipelines and quality gates. Achieved 90% reduction in production defects and 70% faster time-to-market through continuous integration and intelligent deployment validation."
+      "projectName": "Norway Payroll - Regression Automation",
+      "projectDescription": "Implementing a highly abstract Playwright framework for comprehensive end-to-end UI testing, including accessibility tree checks and console error verification. Separate framework for API schema regression using OpenAPI. API tests leverage API spec-generated clients and RestSharp. Team delivers on a two-week release cycle."
     }
   ],
   "keyAchievements": [
     {
-      "achievementTitle": "60% Faster Regression Cycles with AI Integration",
-      "achievementDetails": "Successfully implemented machine learning algorithms to optimize test suite execution, reducing regression testing time from 48 hours to 18 hours while maintaining 95% defect detection accuracy and improving overall release velocity."
+      "achievementTitle": "60% Faster Regression Cycles",
+      "achievementDetails": "Test automation accelerated regression, enabling earlier defect discovery and improved release quality."
     },
     {
-      "achievementTitle": "Global QA Excellence Award - AI/ML Implementation",
-      "achievementDetails": "Recognized for pioneering AI-driven testing methodologies that transformed quality assurance processes across multiple business units, resulting in $2M annual savings and establishing new industry benchmarks for automated testing efficiency."
-    }
-  ],
-  "customerFeedback": [
-    {
-      "customerName": "Sarah Mitchell",
-      "customerPosition": "VP of Engineering, Global Payroll Division",
-      "feedbackComment": "Deepu's innovative approach to AI-driven testing transformed our quality processes. His leadership in implementing ML-powered test optimization reduced our regression cycles by 60% while improving defect detection accuracy. His expertise in both technical execution and team mentoring has been invaluable to our digital transformation journey."
+      "achievementTitle": "Global Team Impact",
+      "achievementDetails": "Delivered results across diverse geographies, cultures, and tech stacks—driving success and adaptability in every team."
     },
     {
-      "customerName": "Marcus Weber",
-      "customerPosition": "CTO, European Operations",
-      "feedbackComment": "Working with Deepu on the Sweden Flow migration was exceptional. His comprehensive understanding of legacy system challenges combined with modern QA practices ensured a seamless transition. The automated testing frameworks he established continue to deliver consistent quality across our platform, supporting millions of payroll transactions monthly."
+      "achievementTitle": "Flexible Framework & Tech Stack Adaptation",
+      "achievementDetails": "Tailored solutions for diverse customer teams using Playwright, Selenium, API Client, JS/TS, .NET"
+    },
+    {
+      "achievementTitle": "AI Tooling Expertise",
+      "achievementDetails": "Leveraged Copilot, RAG, and self-healing frameworks to boost productivity, code quality, and drive innovation."
     }
   ],
+  "customerFeedback": [],
   "technicalSkills": [
     "Playwright",
-    "Selenium WebDriver",
-    "Python/Java Automation",
-    "AI/ML Testing Frameworks",
-    "Docker & Kubernetes",
-    "CI/CD Pipeline Integration",
-    "BDD/TDD Methodologies",
-    "Performance Testing (JMeter)",
-    "API Testing & Validation",
-    "Cloud Testing (AWS/Azure)",
-    "Test Data Management",
-    "Quality Metrics & Analytics"
+    "Selenium",
+    "TypeScript",
+    ".NET",
+    "Azure/GitHub DevOps",
+    "GitHub Copilot",
+    "Docker"
   ],
   "certifications": [
     {
-      "certificationName": "GitHub Copilot for Business",
-      "issuingOrganization": "GitHub"
-    },
-    {
-      "certificationName": "Microsoft Certified: Azure AI Engineer Associate",
+      "certificationName": "GitHub Copilot Certified Professional",
       "issuingOrganization": "Microsoft"
     },
     {
-      "certificationName": "AWS Certified Solutions Architect",
-      "issuingOrganization": "Amazon Web Services"
+      "certificationName": "DevOps Foundation",
+      "issuingOrganization": "Devops Institute"
     },
     {
-      "certificationName": "Certified Scrum Master (CSM)",
-      "issuingOrganization": "Scrum Alliance"
+      "certificationName": "ISTQB Foundation Level",
+      "issuingOrganization": "ISTQB"
+    },
+    {
+      "certificationName": "Professional Scrum Master (PSM)",
+      "issuingOrganization": "Scrum.Org"
     }
   ]
 }

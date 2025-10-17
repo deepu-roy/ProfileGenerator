@@ -1,18 +1,19 @@
 # Profile PDF Generator
 
-A professional Node.js + Express web application that generates beautiful portfolio PDFs from user form inputs. Features the same stunning design as your SD Worx portfolio with dynamic form controls and browser-native print-to-PDF functionality. **Now with fully functional Partnership section and support for comprehensive professional profiles!**
+A professional Node.js + Express web application that generates beautiful portfolio PDFs from user form inputs. Features the same stunning design as your SD Worx portfolio with dynamic form controls and browser-native print-to-PDF functionality. **Now with 16:9 PowerPoint layout, fully functional Partnership section, and support for comprehensive professional profiles!**
 
 ## ✨ Features
 
 ### Core Functionality
 
 - 🎨 **SD Worx Portfolio Styling** - Stunning dark-themed UI with exact color matching
-- 📸 **Multi-Image Upload** - Profile photo + 2 company logos in footer
+- � **16:9 PowerPoint Layout** - Perfect aspect ratio (1920x1080) for presentations ✨ **NEW!**
+- �📸 **Multi-Image Upload** - Profile photo + 2 company logos in footer
 - 📝 **Complete Profile Builder** - Name, title, company, and professional summary
 - ➕ **Dynamic Form Controls** - Add/Remove buttons for all sections
-- 👁️ **Live Preview** - Real-time styled preview before PDF generation
-- 🖨️ **Browser Print-to-PDF** - Native print functionality with optimized CSS
-- � **Responsive Layout** - Works on all screen sizes
+- 👁️ **Live Preview** - Real-time styled preview with presentation mode toggle
+- 🖨️ **Browser Print-to-PDF** - Native print functionality with 16:9 optimization
+- 📱 **Responsive Layout** - Works on all screen sizes
 
 ### Dynamic Sections
 
@@ -26,13 +27,17 @@ A professional Node.js + Express web application that generates beautiful portfo
 
 ### PDF Optimization
 
-- ✅ **A4 Landscape Format** - Optimized for professional printing
+- ✅ **16:9 Aspect Ratio** - 1920x1080 PowerPoint-ready format ✨ **NEW!**
+- ✅ **Multi-Page Support** - Content flows across multiple pages automatically ✨ **NEW!**
+- ✅ **Clean PDF Output** - No UI buttons in final PDF ✨ **NEW!**
+- ✅ **Presentation Mode Toggle** - Live widescreen preview before PDF generation
 - ✅ **Edge-to-Edge Layout** - Minimal margins for maximum content
 - ✅ **Exact Color Preservation** - `print-color-adjust: exact` for accurate colors
 - ✅ **Enhanced Borders** - Visible Steel Blue borders (60% opacity)
 - ✅ **Centrally Aligned Chips** - Professional expertise badge positioning
 - ✅ **Dual Logo Footer** - Company branding with consistent sizing
-- ✅ **Print CSS Optimizations** - Dedicated styles for PDF output
+- ✅ **Print CSS Optimizations** - Dedicated styles for 16:9 PDF output
+- ✅ **Smart Page Breaks** - Content breaks intelligently across pages
 
 ## Getting Started
 
@@ -70,12 +75,29 @@ Navigate to: **<http://localhost:3001>**
 
 2. **Preview**: Click "Preview Portfolio →" to see your styled portfolio with all sections rendered
 
-3. **Generate PDF** (✅ **Print-optimized with exact color reproduction**):
-   - Click the "🖨️ Save as PDF / Print" floating action button
+3. **Toggle Presentation Mode** (✨ **NEW!**):
+
+   - Click "📊 Toggle Presentation Mode" to preview in 16:9 widescreen format (1600x900)
+   - See exactly how your PDF will look in PowerPoint
+   - Button turns orange when presentation mode is active
+
+4. **Generate PDF** (✅ **16:9 PowerPoint-optimized with Multi-Page Support**):
+
+   - Click the "🖨️ Save as PDF" button
    - Browser opens native print dialog (Cmd+P / Ctrl+P)
    - Select "Save as PDF" as destination
-   - **Recommended**: A4 Landscape orientation for maximum content display
-   - Professional PDF ready for distribution with preserved styling and branding
+   - **Automatic**: 1920x1080 (16:9) format perfect for PowerPoint slides
+   - **Multi-Page**: Content automatically flows across multiple pages when needed
+   - **Clean Output**: All UI buttons are hidden in the PDF
+   - Professional PDF ready for presentations with preserved styling and branding
+
+5. **Import to PowerPoint**:
+   - Open PowerPoint in Widescreen (16:9) format
+   - Insert > Picture and select your generated PDF
+   - Each page becomes a separate slide
+   - Resize to fit slide perfectly - ready to present!
+
+For detailed PowerPoint integration and multi-page PDF instructions, see **[PDF-MULTIPAGE-GUIDE.md](PDF-MULTIPAGE-GUIDE.md)** and **[POWERPOINT-LAYOUT.md](POWERPOINT-LAYOUT.md)**
 
 ## 📁 Project Structure
 
@@ -228,6 +250,15 @@ The Profile PDF Generator has been successfully tested with maximum content capa
    - Each logo displays in footer with max-width/max-height constraints
 
 ## 📝 Recent Updates & Verified Features
+
+### ✨ **16:9 POWERPOINT LAYOUT (October 2025)** - **NEW!**
+
+- ✨ **16:9 Aspect Ratio Support** - PDFs now generated at 1920x1080 (perfect for PowerPoint)
+- ✨ **Presentation Mode Toggle** - Live preview in widescreen format before generating PDF
+- ✨ **PowerPoint Integration Ready** - Drop PDFs directly into PowerPoint slides with perfect fit
+- ✨ **Optimized Print Settings** - Automatic 16:9 page sizing with enhanced layout
+- ✨ **Comprehensive Documentation** - Detailed guide in [POWERPOINT-LAYOUT.md](POWERPOINT-LAYOUT.md)
+- ✨ **Professional Presentation Support** - Ideal for executive presentations, client proposals, and conference talks
 
 ### ✅ **MAJOR FIXES & ENHANCEMENTS (October 2024)**
 
